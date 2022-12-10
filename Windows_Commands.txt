@@ -1,0 +1,105 @@
+WINDOWS COMMANDS
+TABBED ARE FLAGS FOR THE COMMAND ABOVE
+-
+-
+ipconfig {Display network info}
+  /all {Displays all info such as MAC address}
+  /release {releases the current IP address}
+  /renew {request new IP from DNS server}
+  /renew "INTERFACE" {request new IP from DNS server and specify the interface such as "Wi-Fi"}
+  /displaydns {shows all the websites your computer knows about}
+  /flushdns {will delete dns resolver cache getting rid of old dns}
+-
+-
+nslookup {will show detailed information for websites when searched i.e. nslookup www.google.com}
+  nslookup "WEBSITE NAME" "MANUALLY ASSIGNED DNS SERVER" {to search the website info using specific dns server}
+  -type=mx {Will show the mail exchanger}
+  -type=txt
+  -type=ptr
+-
+-
+cls {clear the command line}
+-
+-
+getmac /v {gets your MAC address}
+-
+-
+powercfg  {Will check for power issues}
+  /energy {Will check for any energy issues}
+  /batteryreport {will give you a link to the battery report, copy and paste it into the command line}
+-
+-
+assoc {Displays which file types are associated with which programs}
+  .mp4=VLC.vlc {How to specify which program opens which file type}
+-
+-
+chkdsk {Will check the disk for issues
+  /f {ill automatically fix the issues}
+  /r {Will check physical sector issues and fix them
+-
+-
+sfc {System File Checker will check the system files}
+  /scannow {to scan now}
+-
+-
+DISM {Deployment Imaging Servicing and Management tool to check the system image}
+  /Online
+  /Cleanup-Image
+  /CheckHealth
+  /RestoreHealth
+-
+-
+tasklist {shows the list of active tasks, often used with | findstr name to find specific tasks}
+-
+-
+taskkill {to kill tasks}
+  /f {force the next flag}
+  /pid 00000 {selects the process id to be terminated}
+-
+-
+netsh {better version of ipconfig}
+  wlan show wlan report {will give a wlan report you can copy and paste}
+  interface show interface {shows interfaces}
+  interface ip show address | findstr "IP Address" {gets the ip address}
+  interface ip show dnsservers {shows dns servers}
+  advfirewall set allprofiles state off {will turn off windows defender}
+  advfirewall set allprofiles state on {will turn on windows defender}
+-
+-
+ping WEBSITE {pings the website 4 times}
+  -t {pings continuously}
+-
+-
+tracert WEBSITE {will trace the path to the website specified}
+  -d {will not resolve domain names FASTER}
+-
+-
+netstat {will show connections}
+  -af {shows open ports}
+  -o {shows the process id for all of your connections}
+  -e -t 5 {netstat statistics}
+-
+-
+route print {shows the routing table for your computer}
+-
+-
+route add 192.168.40.0 mask 255.255.255.0 10.7.1.44 {allows you to add a route manually}
+-
+-
+route delete 192.168.40.0 {deletes the route for the specified ip route}
+-
+-
+shutdown {shuts down the computer}
+    /r /fw /f /t 0 {this will reboot the computer into the bios}
+-
+-
+findstr {will search output for desired string usually used with a pipe i.e ipconfig | findstr DNS}
+-
+-
+COMMAND > output.txt {will save the output to a txt file}
+-
+-
+clip {will copy the output of your command to the clipboard when used with a pipe i.e. ipconfig | clip}
+
+-
+-
