@@ -1,0 +1,12 @@
+Lifecycle Checklist
+
+BlueBeam
+- Email Cindy McCarthy the changes that were made (old ps and new ps)
+- remove old PCs from deployment in SCCM
+- uninstall BlueBeam from old PCs
+
+
+
+
+Telework equipment request form
+Employee resources - remote work resources - remote work equipment request form
