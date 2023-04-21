@@ -1,0 +1,19 @@
+from CompInterface import Interface
+from Robotics import Movement
+
+
+### SETTINGS ###
+
+# How long to run the test? (Seconds)
+timer = 30
+
+# How long without movement until the program stops? (Seconds)
+pause_timer = 5
+
+
+
+movement = Movement()
+
+interface = Interface(timer, pause_timer)
+
+interface.start()
