@@ -1,0 +1,58 @@
+import pyfirmata
+import time
+import keyboard
+
+
+
+class Movement:
+    pass
+
+
+if __name__ == "__main__":
+    
+# Connecting to the board, Labeled under port
+    board = pyfirmata.Arduino("COM3")
+    print("Communication Successful")
+
+    angle = 175
+    da = 5
+    servo1 = board.get_pin('d:2:s')
+    servo1.write(angle)
+    print(f"Starting angle {angle}")
+
+    def servo_move(angle):
+        servo1.write(angle)
+
+    listy = [1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 2]
+
+
+
+
+
+
+
+
+
+
+    i = 0
+    # The while function acts like the void loop() and will start the programmed commands
+    while True:
+        var = listy[i]
+        print(f"var = {var} i = {i}")
+        time.sleep(1)
+        if var == 1:
+            servo_move(45)
+            time.sleep(1)
+            servo_move(175)
+            print("marked")
+            
+            time.sleep(2)
+        elif var == 2:
+            print("finished")
+            break
+        else:
+            print("skip")
+            time.sleep(2)
+        i += 1
+        print("moving")
+        time.sleep(2)
