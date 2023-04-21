@@ -1,0 +1,104 @@
+import pyautogui
+from datetime import datetime, timedelta
+import time
+# I imported pyautogui because it can get keyboard/mouse inputs and return them as values
+# datetime can get the current time
+# I imported time because it has a method called sleep that allows me to make the script wait for a determined amount of time
+
+
+class Interface:
+
+    def __init__(self, timer, pause):
+        self.input_timer = timer
+        self.input_pause = pause
+        
+    # Function to handle log creation
+
+    def create_file(self, text, file_name):
+        string = ""
+        print("---Log file created---")
+        if type(text) == dict:
+            for key, value in text.items():
+                if value in text.values():
+                    string += (key + "|" + value + "*\n")
+                else:
+                    string += (key + "|" + value + "\n")
+
+        
+
+
+        with open(file_name, 'w') as current_file:
+            current_file.write(string)
+
+
+
+
+
+    # Function for when the mouse stops moving
+    def mouse_stop(self):
+        print("Mouse stopped moving!!!")
+
+
+
+
+
+
+    def start(self):
+        # Saves a log of all the movements
+        movement_log = {}
+
+        # Gets the current time
+        current_time = datetime.now()
+   
+        # Variable that sets the length of time the script will run
+
+
+        # Sets the time in the proper format of when the script should end by adding a timedelta object in seconds which is set by my timer variable.
+        time_end = current_time + timedelta(seconds=self.input_timer)
+        formatted_end_time = time_end.strftime("%H:%M:%S")
+        print(f"Timer set for {self.input_timer}. \nTest will end at {formatted_end_time}")
+
+        # Checks the current time and if that time is less than the end time_end variable the while loop will continue
+        while current_time < time_end:
+
+            # updates the current time variable every iteration of the loop
+            current_time = datetime.now()
+            
+            formatted_current_time = current_time.strftime("%H:%M:%S")
+
+            time_remaining = str(time_end - datetime.now())
+
+            # prints a formatted verion of the time
+            print(f"{formatted_current_time} - {time_remaining[:7]}")
+
+            # gets the current position of the mouse pointer
+            pos = pyautogui.position()
+            print(pos)
+            # Pauses script for one sleep(1) 
+            time.sleep(1)
+
+            # Adds the pos to the movement log
+            movement_log[formatted_current_time] = str(pos)
+            
+
+            # If the mouse pointer hasn't moved for 5 iterations of the script I want it to stop the script and tell me that it hasn't moved
+
+
+            # Checks to see if the list is long enough to evaluate.
+            if len(movement_log) > self.input_pause:
+                
+                # Gets the last 5 entrys of the log as a new shorter list
+                last_three = list(movement_log.values())[-1 * (self.input_pause + 1):]
+                
+                
+                # Uses the all() method to check the new string. 
+                # If all the elements of the list are the same as the first element this means the mouse hasn't moved in 5 iterations the variable equal will return true and therefore the script will stop
+                equal = all(element == last_three[0] for element in last_three)
+                
+                # Evaluates equal as either true or false, if true it will stop the script
+                if equal:
+                    Interface.mouse_stop(self)
+                    Interface.create_file(self, movement_log, "log.txt")
+                    break
+        print("Test finished successfully")
+        Interface.create_file(self, movement_log, "log.txt")
