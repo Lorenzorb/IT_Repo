@@ -1,0 +1,17 @@
+Creating a weapon
+
+
+
+1.Create the prefab of the weapon
+- x,y,z location
+- Sprite
+- Add WeaponActions.cs
+
+2. Create A scriptable object
+- 
+
+
+
+
+
+
